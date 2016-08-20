@@ -38,7 +38,7 @@
         
         架构 : 复制集  
         
-        索引 : { _id : 1 }, { own_user : 1 }  
+        索引 : { _id : 1 }, { own_user : 1 }, { pub_time : -1 }  
 
         {  
             _id          : mongodb自动生成的随机字符串,  
@@ -68,12 +68,14 @@
         
         架构 : 复制集  
         
-        索引 : { note_id : 1 }  
+        索引 : { note_id : 1 }, { own_user : 1 }  
 
         {  
             _id          : mongodb自动生成的随机字符串,  
             
             note_id      : 对应读书笔记的概要信息部分的_id,  
+            
+            own_user     : 我的用户名,  
             
             source       : 原文出处,  
             
