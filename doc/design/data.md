@@ -45,8 +45,6 @@
             
             own_head     : 所属用户的头像链接,  
             
-            public       : 是否公开（true of false）,  
-            
             pub_time     : 发布时间戳,  
             
             feel         : 我的感悟,  
@@ -95,8 +93,6 @@
 
         {  
             _id          : 对应读书笔记的基本信息部分（note_base）中的_id,  
-                        
-            public       : 是否公开（true of false）,  
             
             popularity   : 热度,  
             
@@ -147,38 +143,38 @@
         索引 : { note_id : 1, ancestor_id : 1, time : -1 }  
         
         {  
-            _id : 这条评论的id,  
+            _id          : 这条评论的id,  
             # 由时间戳和用户名拼接而成，以确保唯一性  
             
-            note_id     : 对应读书笔记的基本信息部分（note_base）中的_id,   
+            note_id      : 对应读书笔记的基本信息部分（note_base）中的_id,   
             
-            ancestor_id : 祖先评论的id,  
+            ancestor_id  : 祖先评论的id,  
             
-            time        : 这条评论的时间戳,  
+            time         : 这条评论的时间戳,  
             
-            content     : 这条评论的内容,  
+            content      : 这条评论的内容,  
             
-            send_id     : 评论者的用户名（手机）,  
-            send_nick   : 评论者的昵称,  
-            send_head   : 评论者的头像url链接,  
+            send_id      : 评论者的用户名（手机）,  
+            send_nick    : 评论者的昵称,  
+            send_head    : 评论者的头像url链接,  
             
-            istop       : 是否是最上面一层的评论,  
-            recv_id     : 接收者的用户名（手机）,  
-            recv_nick   : 接收者的昵称  
+            replyed_nick : 被回复者的昵称,  
+            
+            recv_ids     : [ user_id1, user_id2, ... ]  
+            # 消息接受者的用户名列表  
+            # 它表示如果之后有谁回复这条评论，那么哪些人会收到消息  
             
             # 若这条评论是针对读书笔记的 :  
-            #     ancestor_id 为 "0"  
-            #     istop       为 true  
-            #     recv_id     为 ""  
-            #     recv_nick   为 ""  
+            #     ancestor_id   为 "0"  
+            #     replyed_nick  为 ""  
+            #     recv_ids      为 [ 这篇读书笔记的所有者的id, 此评论者的id ]  
             
             # 若这条评论是针对某条评论的 :  
-            #     ancestor_id 为那条评论的祖先的_id，即 :  
+            #     ancestor_id   为那条评论的祖先的_id，即 :  
             #         if 那条评论是表层评论（ancestor_id == "0"），则这条评论的ancestor_id取那条评论的_id  
             #         if 那条评论是内层评论（ancestor_id != "0"），则这条评论的ancestor_id取那条评论的ancestor_id  
-            #     istop       为 false  
-            #     recv_id     为那条评论的评论者用户名  
-            #     recv_nick   为那条评论的评论者昵称  
+            #     replyed_nick  为你要回复的那条评论的用户昵称  
+            #     recv_ids      为那条评论的recv_ids加上你的id  
         }  
 
 
@@ -188,12 +184,13 @@
         
         架构 : 复制集  
         
-        索引 : { user_id : 1, time : -1 }  
+        索引 : { user_ids : 1, time : -1 }  
 
         {  
             _id        : mongodb自动生成的随机字符串,  
             
-            user_id    : 某人的用户名（手机）,  
+            user_ids   : 与谁相关，他们的用户名列表,  
+            # 形如 [ user_id1, user_id2, ... ]  
             
             time       : 时间戳,  
 
