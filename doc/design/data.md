@@ -43,8 +43,6 @@
             
             own_nick     : 所属用户的昵称,  
             
-            own_head     : 所属用户的头像链接,  
-            
             pub_time     : 发布时间戳,  
             
             feel         : 我的感悟,  
@@ -143,8 +141,7 @@
         索引 : { note_id : 1, ancestor_id : 1, time : -1 }  
         
         {  
-            _id          : 这条评论的id,  
-            # 由时间戳和用户名拼接而成，以确保唯一性  
+            _id          : 这条评论的id（由mongodb自动生成）,  
             
             note_id      : 对应读书笔记的基本信息部分（note_base）中的_id,   
             
@@ -156,7 +153,6 @@
             
             send_id      : 评论者的用户名（手机）,  
             send_nick    : 评论者的昵称,  
-            send_head    : 评论者的头像url链接,  
             
             replyed_nick : 被回复者的昵称,  
             
@@ -196,7 +192,6 @@
 
             who_id     : 对方的用户名,   
             who_nick   : 对方的昵称,  
-            who_head   : 对方的头像链接,  
             
             note_id    : 和哪一篇读书笔记相关（读书笔记的基本信息部分的_id）,   
             note_title : 和哪一篇读书笔记相关（笔记标题）,  
