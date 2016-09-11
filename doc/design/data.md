@@ -17,6 +17,9 @@
             nick              : 昵称,  
             
             head              : 头像的完整链接地址,  
+            # 该数据是虚数据（实际不存在该项），它由手机号就可以唯一确定  
+            # 例如 http://deepnote.oss-cn-shanghai.aliyuncs.com/user_head/13915497202.jpg  
+            # 若加载图片失败，就使用默认图片  
             
             signup_time       : 注册时间戳,  
             
