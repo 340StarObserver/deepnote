@@ -211,3 +211,24 @@
             # 为了方便客户端解析，当action_id不等于3的时候，此值为""  
         }  
 
+
+### 1-8. 关注表 care_record ###
+
+        位于 : mongodb  
+        
+        架构 : 复制集  
+        
+        索引 : { carer_id : 1, time : -1 }  
+        
+        {  
+            _id        : mongodb自动生成的随机字符串,  
+            
+            carer_id   : 关注者的用户名,  
+            
+            time       : 在什么时候关注的（时间戳）,  
+            
+            cared_id   : 被关注者的用户名,  
+            
+            cared_nick : 被关注者的昵称  
+        }  
+
