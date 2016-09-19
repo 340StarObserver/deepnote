@@ -313,20 +313,238 @@
 
 
 
+11.　发布读书笔记  
+
+        请求体 :  
+        
+        {  
+            action_id   : 201,  
+            
+            token       : 之前获得的令牌,  
+            
+            title       : 这篇读书笔记的标题,  
+            
+            type        : 这篇读书笔记的分类名,  
+            
+            labels      : 这篇读书笔记的标签们,  
+            # 以逗号分隔，形如 "label1,label2,label3"  
+            
+            source_link : 这篇读书笔记的原文链接,  
+            
+            source_ref  : 这篇读书笔记的原文引用,  
+            
+            feel        : 这篇读书笔记的个人感悟  
+        }  
+        
+        响应头 :  
+                
+        其中的 Set-Cookie 字段的值类似于 "session=xxxx; HttpOnly; Path=/"  
+        
+        响应体 :  
+        
+        {  
+            result   : 成功与否,  
+            # true or false  
+            
+            reason   : 失败原因,  
+            # 仅当 result==false，此值才存在  
+            # 1 : 未登陆  
+            # 2 : 令牌错误  
+            # 3 : 标题为空  
+            # 4 : 个人感悟为空  
+            
+            # 以下字段均仅当 result==true，才会存在  
+            
+            token    : 新的令牌  
+            
+            note_id  : 这篇新的读书笔记的id,  
+            pub_time : 这篇新的读书笔记的发布时间戳  
+        }  
 
 
 
+12.　查询某人的读书笔记列表  
+
+        请求体 :  
+        
+        {  
+            action_id : 202,  
+            
+            who_usr   : 该用户的用户名（手机号）,  
+            
+            page_id   : 第几页,  
+            # 一开始默认是第一页，此后向后翻页便加一，向前翻页便减一  
+            
+            page_size : 页面大小  
+            # 即这页中客户端希望最多拿到多少条数据  
+        }  
+        
+        响应体 :  
+        
+        {  
+            notes :  
+            [  
+                {  
+                    _id      : 这篇读书笔记的id,  
+                    
+                    title    : 这篇读书笔记的标题,  
+                    
+                    type     : 这篇读书笔记的分类名,  
+                    
+                    own_id   : 这篇读书笔记的所属人的用户名（手机）,  
+                    
+                    own_nick : 这篇读书笔记的所属人的昵称,  
+                    
+                    pub_time : 这篇读书笔记的发布时间戳,  
+                    
+                    labels   : 这篇读书笔记的标签们,  
+                    # 以逗号分隔，形如 "label1,label2,label3"  
+                    
+                    feel     : 这篇读书笔记的个人感悟  
+                },  
+                {  
+                    另一篇读书笔记的...  
+                }  
+            ]  
+            # 读书笔记列表  
+        }  
 
 
 
+13.　修改某篇读书笔记  
+
+        请求体 :  
+        
+        {  
+            action_id   : 203,  
+            
+            token       : 之前获得的令牌,  
+            
+            note_id     : 你想修改的那篇读书笔记的id,  
+            
+            type        : 新的分类名,  
+            
+            labels      : 新的标签们,  
+            # 以逗号分隔，形如 "label1,label2,label3"  
+            
+            source_link : 新的原文链接,  
+            
+            source_ref  : 新的原文引用,  
+            
+            feel        : 新的个人感悟  
+        }  
+
+        响应头 :  
+                
+        其中的 Set-Cookie 字段的值类似于 "session=xxxx; HttpOnly; Path=/"  
+
+        响应体 :  
+        
+        {  
+            result  : 成功与否,  
+            # true or false  
+            
+            reason  : 失败原因,  
+            # 仅当 result==false，此值才存在  
+            # 1 : 未登陆  
+            # 2 : 令牌错误  
+            # 3 : 个人感悟为空  
+            
+            token   : 新的令牌  
+            # 仅当 result==true，此值才存在  
+        }  
 
 
 
+14.　删除某篇读书笔记  
+
+        请求体 :  
+        
+        {  
+            action_id   : 204,  
+            
+            token       : 之前获得的令牌,  
+            
+            note_id     : 你想删除的那篇读书笔记的id  
+        }  
+
+        响应头 :  
+                
+        其中的 Set-Cookie 字段的值类似于 "session=xxxx; HttpOnly; Path=/"  
+
+        响应体 :  
+        
+        {  
+            result  : 成功与否,  
+            # true or false  
+            
+            reason  : 失败原因,  
+            # 仅当 result==false，此值才存在  
+            # 1 : 未登陆  
+            # 2 : 令牌错误  
+            # 3 : 该读书笔记不存在  
+            # 4 : 该读书笔记不是你的  
+            
+            token   : 新的令牌  
+            # 仅当 result==true，此值才存在  
+        }  
 
 
 
+15.　同步（强制重新加载）自己的全部的读书笔记  
 
+        请求体 :  
+        
+        {  
+            action_id   : 205,  
+            
+            token       : 之前获得的令牌  
+        }  
 
+        响应头 :  
+                
+        其中的 Set-Cookie 字段的值类似于 "session=xxxx; HttpOnly; Path=/"  
 
+        响应体 :  
+        
+        {  
+            result  : 成功与否,  
+            # true or false  
+            
+            reason  : 失败原因,  
+            # 仅当 result==false，此值才存在  
+            # 1 : 未登陆  
+            # 2 : 令牌错误  
+            
+            token   : 新的令牌,  
+            # 仅当 result==true，此值才存在  
+            
+            notes   :  
+            [  
+                {  
+                    _id      : 这篇读书笔记的id,  
+                    
+                    title    : 这篇读书笔记的标题,  
+                    
+                    type     : 这篇读书笔记的分类名,  
+                    
+                    own_id   : 这篇读书笔记的所属人的用户名（手机）,  
+                    
+                    own_nick : 这篇读书笔记的所属人的昵称,  
+                    
+                    pub_time : 这篇读书笔记的发布时间戳,  
+                    
+                    labels   : 这篇读书笔记的标签们,  
+                    # 以逗号分隔，形如 "label1,label2,label3"  
+                    
+                    feel     : 这篇读书笔记的个人感悟  
+                },  
+                {  
+                    另一篇读书笔记的...  
+                }  
+            ]  
+            # 你的全部的读书笔记的概要信息  
+            # 仅当 result==true，此值才存在  
+        }  
 
 
