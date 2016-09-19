@@ -12,7 +12,7 @@
         {  
             _id               : 手机号,  
             
-            password          : 密码的MD5的两重加密密文,  
+            password          : 密码的MD5的加密密文,  
             
             nick              : 昵称,  
             
