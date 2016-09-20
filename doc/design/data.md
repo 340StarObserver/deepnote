@@ -33,7 +33,7 @@
         
         架构 : 复制集  
         
-        索引 : { _id : 1 }, { own_id : 1 }, { pub_time : -1 }  
+        索引 : { _id : 1 }, { own_id : 1, pub_time : -1 }, { pub_time : -1 }  
 
         {  
             _id          : mongodb自动生成的随机字符串,  
