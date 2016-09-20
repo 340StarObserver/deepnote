@@ -112,30 +112,48 @@
         }  
 
 
-### 1-5. 读书笔记的行为记录  note_action ###
+### 1-5. 读书笔记的赞同反对记录  note_action ###
 
         位于 : mongodb  
         
         架构 : 复制集  
         
-        索引 : { user_id : 1, note_id : 1 }  
+        索引 : { user_id : 1, action_type : 1, note_id : 1 }  
 
         {  
             _id          : mongodb自动生成的随机字符串,  
             
             user_id      : 某人的用户名（手机）,  
             
-            note_id      : 对应读书笔记的基本信息部分（note_base）中的_id,  
-            
-            action_type  : 行为类型  
+            action_type  : 行为类型,  
             #  0  :  赞同  
             #  1  :  反对　　
-            #  2  :  收藏  
             #  未完待续...  
+            
+            note_id      : 对应读书笔记的基本信息部分（note_base）中的_id  
         }  
 
 
-### 1-6. 评论记录表 comment_record ###
+### 1-6. 读书笔记的收藏记录 note_collect ###
+
+        位于 : mongodb  
+        
+        架构 : 复制集  
+        
+        索引 : { user_id : 1, time : -1 }  
+
+        {  
+            _id          : mongodb自动生成的随机字符串,  
+            
+            user_id      : 某人的用户名（手机）,  
+            
+            time         : 收藏时刻的时间戳,  
+            
+            note_id      : 对应读书笔记的基本信息部分（note_base）中的_id  
+        }  
+
+
+### 1-7. 评论记录表 comment_record ###
 
         位于 : mongodb  
         
@@ -177,7 +195,7 @@
         }  
 
 
-### 1-7. 与我相关的消息表 message_record ###
+### 1-8. 与我相关的消息表 message_record ###
 
         位于 : mongodb  
         
@@ -200,19 +218,24 @@
             note_title : 和哪一篇读书笔记相关（笔记标题）,  
             
             action_id  : 行为代号,  
-            #  0  : 赞同  
-            #  1  : 反对  
-            #  2  : 收藏  
-            #  3  : 评论  
+            #  0  : 评论  
+            #  1  : 赞同  
+            #  2  : 取消赞同  
+            #  3  : 反对  
+            #  4  : 取消反对  
+            #  5  : 收藏  
+            #  6  : 取消收藏  
+            #  7  : 关注  
+            #  8  : 取消关注  
             #  未完待续...  
             
             content    : 评论内容  
-            # action_id==3，此值才有意义  
-            # 为了方便客户端解析，当action_id不等于3的时候，此值为""  
+            # action_id==0，此值才有意义  
+            # 为了方便客户端解析，当action_id不等于0的时候，此值为""  
         }  
 
 
-### 1-8. 关注表 care_record ###
+### 1-9. 关注表 care_record ###
 
         位于 : mongodb  
         
