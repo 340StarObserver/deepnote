@@ -60,12 +60,10 @@
         
         架构 : 复制集  
         
-        索引 : { _id : 1 }, { own_id : 1 }  
+        索引 : { _id : 1 }  
 
         {  
             _id          : 对应读书笔记的基本信息部分（note_base）的_id,  
-            
-            own_id       : 我的用户名（手机）,  
             
             source_link  : 原文链接,  
             
@@ -114,19 +112,19 @@
         
         架构 : 复制集  
         
-        索引 : { user_id : 1, action_type : 1, note_id : 1 }  
+        索引 : { user_id : 1, note_id : 1 }  
 
         {  
             _id          : mongodb自动生成的随机字符串,  
             
             user_id      : 某人的用户名（手机）,  
             
-            action_type  : 行为类型,  
+            note_id      : 对应读书笔记的基本信息部分（note_base）中的_id,  
+            
+            action_type  : 行为类型  
             #  0  :  赞同  
             #  1  :  反对　　
             #  未完待续...  
-            
-            note_id      : 对应读书笔记的基本信息部分（note_base）中的_id  
         }  
 
 
