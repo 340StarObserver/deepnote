@@ -26,12 +26,9 @@
             result : 是否成功,  
             # true or false  
             
-            reason : 失败原因,  
+            reason : 失败原因  
             # 仅当 result==false，此值才存在  
             # 1 : 非法的手机号  
-            
-            code   : 验证码  
-            # 仅当 result==true，此值才存在  
         }  
 
 
