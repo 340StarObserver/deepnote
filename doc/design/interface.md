@@ -18,6 +18,7 @@
         响应头 :  
         
         其中的 Set-Cookie 字段的值类似于 "session=xxxx; HttpOnly; Path=/"  
+        当响应体里的result==true，才要更新（记录下）这个Set-Cookie的值  
 
         响应体 :  
         
@@ -111,6 +112,7 @@
         响应头 :  
         
         其中的 Set-Cookie 字段的值类似于 "session=xxxx; HttpOnly; Path=/"  
+        当响应体里的result==true，才要更新（记录下）这个Set-Cookie的值  
         
         响应体 :  
         
@@ -231,6 +233,7 @@
         响应头 :  
         
         其中的 Set-Cookie 字段的值类似于 "session=xxxx; HttpOnly; Path=/"  
+        当响应体里的result==true，才要更新（记录下）这个Set-Cookie的值  
         
         响应体 :  
         
@@ -270,6 +273,7 @@
         响应头 :  
                 
         其中的 Set-Cookie 字段的值类似于 "session=xxxx; HttpOnly; Path=/"  
+        当响应体里的result==true，才要更新（记录下）这个Set-Cookie的值  
         
         响应体 :  
         
@@ -345,6 +349,7 @@
         响应头 :  
                 
         其中的 Set-Cookie 字段的值类似于 "session=xxxx; HttpOnly; Path=/"  
+        当响应体里的result==true，才要更新（记录下）这个Set-Cookie的值  
         
         响应体 :  
         
@@ -438,6 +443,7 @@
         响应头 :  
                 
         其中的 Set-Cookie 字段的值类似于 "session=xxxx; HttpOnly; Path=/"  
+        当响应体里的result==true，才要更新（记录下）这个Set-Cookie的值  
 
         响应体 :  
         
@@ -474,6 +480,7 @@
         响应头 :  
                 
         其中的 Set-Cookie 字段的值类似于 "session=xxxx; HttpOnly; Path=/"  
+        当响应体里的result==true，才要更新（记录下）这个Set-Cookie的值  
 
         响应体 :  
         
@@ -507,6 +514,7 @@
         响应头 :  
                 
         其中的 Set-Cookie 字段的值类似于 "session=xxxx; HttpOnly; Path=/"  
+        当响应体里的result==true，才要更新（记录下）这个Set-Cookie的值  
 
         响应体 :  
         
