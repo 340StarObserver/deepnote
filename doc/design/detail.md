@@ -31,9 +31,9 @@
 
 002.　服务端工厂模式下的业务处理  
 
-        各种业务的处理器类 :  
+        各种业务的处理器基类 :  
         
-        class XXX_Handler :  
+        class BaseHandler :  
             def __init__(self,post_data,post_files,usr_sessions,server_conf):  
                 self._post_data = post_data  
                 self._post_files = post_files  
@@ -42,6 +42,15 @@
             def perform(self):  
                 # 业务处理  
                 # 最后统一返回一个dict  
+        
+        一个特定业务的处理器类 :  
+        
+        class XXXHandler(BaseHandler) :  
+            def __init__(self,post_data,post_files,usr_sessions,server_conf):  
+                super(XXXHandler,self).__init__(post_data,post_files,usr_sessions,server_conf)
+            def perform(self):  
+                # 针对这个业务的处理  
+                # 最后同样返回一个dict  
         
         对外的工厂类 :  
         
