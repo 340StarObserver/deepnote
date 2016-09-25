@@ -3,7 +3,7 @@
 
 # Author 		: 	Lv Yang
 # Created 		: 	24 September 2016
-# Modified 		: 	24 September 2016
+# Modified 		: 	25 September 2016
 # Version 		: 	1.0
 
 """
@@ -13,6 +13,9 @@ This script used to read configuration from a file
 import ConfigParser
 import sys
 
+reload(sys)
+sys.setdefaultencoding('utf8')
+
 def read(filename):
     """
     this function used to read configuration from a file
@@ -20,7 +23,7 @@ def read(filename):
     the parameter is the path of file
     it returns a dictionary of pairs of <key,value>
     """
-    res = {'oss':{},'mongo':{},'appserver':{}}
+    res = {'oss':{},'mongo':{},'appserver':{},'sms':{}}
     config = ConfigParser.ConfigParser()
     try:
         config.read(filename)
@@ -38,6 +41,13 @@ def read(filename):
         res['mongo']['db_pwd'] = config.get('mongo','db_pwd')
         # about webserver
         res['appserver']['rsa_length'] = int(config.get('appserver','rsa_length'))
+        # about sms
+        res['sms']['access_key'] = int(config.get('sms','access_key'))
+        res['sms']['secret_key'] = config.get('sms','secret_key')
+        res['sms']['code_min'] = int(config.get('sms','code_min'))
+        res['sms']['code_max'] = int(config.get('sms','code_max'))
+        res['sms']['url'] = config.get('sms','url')
+        res['sms']['time_limit'] = int(config.get('sms','time_limit'))
     except Exception,e:
         print "fail to read configuration from %s"%(filename)
         print str(e)
