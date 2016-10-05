@@ -3,7 +3,7 @@
 
 # Author 		: 	Lv Yang
 # Created 		: 	25 September 2016
-# Modified 		: 	25 September 2016
+# Modified 		: 	05 October 2016
 # Version 		: 	1.0
 
 """
@@ -28,3 +28,21 @@ def is_valid_pwd(pwd):
     """
     pattern = re.compile('^[0-9a-f]{32}$')
     return pattern.match(pwd)!=None
+
+def is_valid_nick(nick):
+    """
+    judge whether a nick is valid
+    """
+    return len(nick) > 0
+
+def is_valid_notetitle(title):
+    """
+    judge whether a note's title is valid
+    """
+    return len(title) > 0
+
+def is_valid_notefeel(feel):
+    """
+    judge whether a note's feel is valid
+    """
+    return len(feel) > 0

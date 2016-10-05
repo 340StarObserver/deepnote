@@ -3,7 +3,7 @@
 
 # Author 		: 	Lv Yang
 # Created 		: 	24 September 2016
-# Modified 		: 	25 September 2016
+# Modified 		: 	05 October 2016
 # Version 		: 	1.0
 
 """
@@ -23,7 +23,7 @@ def read(filename):
     the parameter is the path of file
     it returns a dictionary of pairs of <key,value>
     """
-    res = {'oss':{},'mongo':{},'appserver':{},'sms':{}}
+    res = {'oss':{},'mongo':{},'sms':{},'elasticsearch':{}}
     config = ConfigParser.ConfigParser()
     try:
         config.read(filename)
@@ -39,8 +39,6 @@ def read(filename):
         res['mongo']['db_name'] = config.get('mongo','db_name')
         res['mongo']['db_user'] = config.get('mongo','db_user')
         res['mongo']['db_pwd'] = config.get('mongo','db_pwd')
-        # about webserver
-        res['appserver']['rsa_length'] = int(config.get('appserver','rsa_length'))
         # about sms
         res['sms']['access_key'] = int(config.get('sms','access_key'))
         res['sms']['secret_key'] = config.get('sms','secret_key')
@@ -48,6 +46,11 @@ def read(filename):
         res['sms']['code_max'] = int(config.get('sms','code_max'))
         res['sms']['url'] = config.get('sms','url')
         res['sms']['time_limit'] = int(config.get('sms','time_limit'))
+        # about elasticsearch
+        res['elasticsearch']['host'] = config.get('elasticsearch','host')
+        res['elasticsearch']['port'] = int(config.get('elasticsearch','port'))
+        res['elasticsearch']['index'] = config.get('elasticsearch','index')
+        res['elasticsearch']['type'] = config.get('elasticsearch','type')
     except Exception,e:
         print "fail to read configuration from %s"%(filename)
         print str(e)

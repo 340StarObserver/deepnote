@@ -33,7 +33,7 @@ def help():
         \r\nfor example :\
         \r\n\tpython main.py 0.0.0.0 8081\
         \r\n\r\nhow to run when deploy :\
-        \r\n\tuwsgi --ini conf/uwsgi8081.ini"
+        \r\n\tuwsgi --ini ../conf/uwsgi8081.ini"
     print inform
 
 
