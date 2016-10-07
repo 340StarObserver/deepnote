@@ -3,7 +3,7 @@
 
 # Author 		: 	Lv Yang
 # Created 		: 	05 October 2016
-# Modified 		: 	05 October 2016
+# Modified 		: 	07 October 2016
 # Version 		: 	1.0
 
 """
@@ -16,7 +16,7 @@ e. judge whether somebody has collected one specific note
 f. judge whether somebody has cared another user
 """
 
-def affect_note(mongoconn,note_id,field,value):
+def affect_note(mongoconn,db_name,note_id,field,value):
     """
     increase(or decrease) one note's agree_num(or oppose_num or collect_num or comment_num)
     parameters :
@@ -28,7 +28,7 @@ def affect_note(mongoconn,note_id,field,value):
     pass
 
 
-def agree_oppose_record(mongoconn,user_id,note_id):
+def agree_oppose_record(mongoconn,db_name,user_id,note_id):
     """
     get somebody's agree-and-oppose records towards one specific note
     return :
@@ -38,7 +38,7 @@ def agree_oppose_record(mongoconn,user_id,note_id):
     pass
 
 
-def agree_oppose_add(mongoconn,user_id,note_id,action_type):
+def agree_oppose_add(mongoconn,db_name,user_id,note_id,action_type):
     """
     add a record of somebody agree-or-oppose one specific note
     parameters :
@@ -48,14 +48,14 @@ def agree_oppose_add(mongoconn,user_id,note_id,action_type):
     pass
 
 
-def agree_oppose_delete(mongoconn,user_id,note_id,action_type):
+def agree_oppose_delete(mongoconn,db_name,user_id,note_id,action_type):
     """
     delete a record of somebody agree-or-oppose one specific note
     """
     pass
 
 
-def exist_collect(mongoconn,user_id,note_id):
+def exist_collect(mongoconn,db_name,user_id,note_id):
     """
     judge whether somebody has collected one specific note
     return :
@@ -64,7 +64,7 @@ def exist_collect(mongoconn,user_id,note_id):
     pass
 
 
-def exist_care(mongoconn,carer_id,cared_id):
+def exist_care(mongoconn,db_name,carer_id,cared_id):
     """
     judge whether somebody has cared another user
     parameters :

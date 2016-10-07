@@ -3,7 +3,7 @@
 
 # Author 		: 	Lv Yang
 # Created 		: 	05 October 2016
-# Modified 		: 	05 October 2016
+# Modified 		: 	07 October 2016
 # Version 		: 	1.0
 
 """
@@ -21,6 +21,8 @@ def getclient(hosts,replicaset,db_name,db_user,db_pwd):
         replicaset is the name of your replicaset
         db_name is the name of your database
         db_user,db_pwd is for auth
+    tips :
+        don't forget to close it after use
     """
     conn = MongoClient(hosts,replicaSet=replicaset,read_preference=ReadPreference.SECONDARY_PREFERRED)
     conn[db_name].authenticate(db_user,db_pwd,mechanism='SCRAM-SHA-1')

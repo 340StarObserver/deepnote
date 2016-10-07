@@ -3,7 +3,7 @@
 
 # Author 		: 	Lv Yang
 # Created 		: 	05 October 2016
-# Modified 		: 	05 October 2016
+# Modified 		: 	07 October 2016
 # Version 		: 	1.0
 
 """
@@ -14,7 +14,9 @@ c. set one account's password
 d. upload head image to OSS
 """
 
-def exist_account(mongoconn,phone):
+import oss2
+
+def exist_account(mongoconn,db_name,phone):
     """
     judge whether an account exists
     parameters :
@@ -23,24 +25,27 @@ def exist_account(mongoconn,phone):
     return :
         True if exists, False if not
     """
-    pass
+    record = mongoconn[db_name]['user_info'].find_one({'_id':phone})
+    return record != None
 
 
-def account_info(mongoconn,phone):
+def account_info(mongoconn,db_name,phone):
     """
     get one account's info
     return :
         a dict if exists, for example : {'_id':'13912341234','password':'xxx','nick':'yyy','signup_time':zzz,'signature':'aaa'}
         None if not
     """
-    pass
+    return mongoconn[db_name]['user_info'].find_one({'_id':phone})
 
 
-def set_pwd(mongoconn,pwd):
+def set_pwd(mongoconn,db_name,phone,pwd):
     """
     set one account's password
     """
-    pass
+    factor1 = {'_id':phone}
+    factor2 = {'$set':{'password':pwd}}
+    mongoconn[db_name]['user_info'].update_one(factor1,factor2)
 
 
 def upload_head(access_id,access_key,end_point,bucket_name,head_dir,username,image_data):
@@ -54,4 +59,8 @@ def upload_head(access_id,access_key,end_point,bucket_name,head_dir,username,ima
         username is the user's phone
         image_data is an image's binary data
     """
-    pass
+    auth = oss2.Auth(access_id,access_key)
+    bucket_conn = oss2.Bucket(auth,end_point,bucket_name)
+    path = "%s/%s.jpg"%(head_dir,username)
+    result = bucket_conn.put_object(path,image_data)
+    return (result.status,result.request_id,result.etag)

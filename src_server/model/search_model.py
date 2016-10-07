@@ -3,7 +3,7 @@
 
 # Author 		: 	Lv Yang
 # Created 		: 	05 October 2016
-# Modified 		: 	05 October 2016
+# Modified 		: 	07 October 2016
 # Version 		: 	1.0
 
 """
@@ -13,15 +13,18 @@ b. get a note's base info from mongodb
 c. get a note's detail info from mongodb
 """
 
-def fuzzySearch(sentence,page_id,page_size,es_host,es_port,es_index,es_type):
+def fuzzySearch(esconn,index,type,sentence,page_id,page_size):
     """
     search from elasticsearch by giving a sentence
 
     parameters :
+        esconn is a Elasticsearch object, you can get it from 'esconn_model.py'
+        index is the index name of elasticsearch
+        type is the type name of elasticsearch
+
         sentence is a sentence that user input
         page_id is the id of current page
         page_size is the size of current page
-        es_host,es_port,es_index,es_type is elasticsearch's info, you can get it from global server conf
 
     return :
         a list like [ note_id1, note_id2, note_id3 ]
@@ -29,7 +32,7 @@ def fuzzySearch(sentence,page_id,page_size,es_host,es_port,es_index,es_type):
     pass
 
 
-def note_baseinfo(mongoconn,note_id):
+def note_baseinfo(mongoconn,db_name,note_id):
     """
     get a note's base info from mongodb
 
@@ -44,7 +47,7 @@ def note_baseinfo(mongoconn,note_id):
     pass
 
 
-def note_detailinfo(mongoconn,note_id):
+def note_detailinfo(mongoconn,db_name,note_id):
     """
     get a note's detail info from mongodb
     return :

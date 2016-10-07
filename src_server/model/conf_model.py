@@ -3,7 +3,7 @@
 
 # Author 		: 	Lv Yang
 # Created 		: 	24 September 2016
-# Modified 		: 	05 October 2016
+# Modified 		: 	07 October 2016
 # Version 		: 	1.0
 
 """
@@ -47,8 +47,7 @@ def read(filename):
         res['sms']['url'] = config.get('sms','url')
         res['sms']['time_limit'] = int(config.get('sms','time_limit'))
         # about elasticsearch
-        res['elasticsearch']['host'] = config.get('elasticsearch','host')
-        res['elasticsearch']['port'] = int(config.get('elasticsearch','port'))
+        res['elasticsearch']['hosts'] = config.get('elasticsearch','hosts')
         res['elasticsearch']['index'] = config.get('elasticsearch','index')
         res['elasticsearch']['type'] = config.get('elasticsearch','type')
     except Exception,e:
