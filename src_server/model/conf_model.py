@@ -47,7 +47,7 @@ def read(filename):
         res['sms']['url'] = config.get('sms','url')
         res['sms']['time_limit'] = int(config.get('sms','time_limit'))
         # about elasticsearch
-        res['elasticsearch']['hosts'] = config.get('elasticsearch','hosts')
+        res['elasticsearch']['hosts'] = config.get('elasticsearch','hosts').split(',')
         res['elasticsearch']['index'] = config.get('elasticsearch','index')
         res['elasticsearch']['type'] = config.get('elasticsearch','type')
     except Exception,e:
