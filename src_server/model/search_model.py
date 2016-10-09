@@ -3,7 +3,7 @@
 
 # Author 		: 	Lv Yang
 # Created 		: 	05 October 2016
-# Modified 		: 	07 October 2016
+# Modified 		: 	09 October 2016
 # Version 		: 	1.0
 
 """
@@ -13,7 +13,10 @@ b. get a note's base info from mongodb
 c. get a note's detail info from mongodb
 """
 
-def fuzzySearch(esconn,index,type,sentence,page_id,page_size):
+from bson import ObjectId
+
+
+def fuzzySearch(esconn,index,doc_type,sentence,page_id,page_size):
     """
     search from elasticsearch by giving a sentence
 
@@ -44,7 +47,10 @@ def note_baseinfo(mongoconn,db_name,note_id):
         if exists, it return a dict like {'_id':'xx','title':'yy','own_id':'aa','own_nick':'bb','pub_time':cc,'feel':'dd','labels':'ee'}
         if not, it return None
     """
-    pass
+    res = mongoconn[db_name]['note_base'].find_one({'_id':ObjectId(note_id)})
+    if res is not None:
+        res['_id'] = str(res['_id'])
+    return res
 
 
 def note_detailinfo(mongoconn,db_name,note_id):
@@ -58,4 +64,11 @@ def note_detailinfo(mongoconn,db_name,note_id):
             'agree_num':3,'oppose_num':4,'collect_num':5,'comment_num':6}
         if not, it return None
     """
-    pass
+    factor = {'_id':ObjectId(note_id)}
+    res_base = mongoconn[db_name]['note_base'].find_one(factor)
+    res_extra = mongoconn[db_name]['note_extra'].find_one(factor)
+    if res_base is not None and res_extra is not None:
+        res = dict(res_base,**res_extra)
+        res['_id'] = str(res['_id'])
+        return res
+    return None
