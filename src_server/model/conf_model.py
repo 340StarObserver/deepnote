@@ -3,7 +3,7 @@
 
 # Author 		: 	Lv Yang
 # Created 		: 	24 September 2016
-# Modified 		: 	07 October 2016
+# Modified 		: 	11 October 2016
 # Version 		: 	1.0
 
 """
@@ -23,7 +23,7 @@ def read(filename):
     the parameter is the path of file
     it returns a dictionary of pairs of <key,value>
     """
-    res = {'oss':{},'mongo':{},'sms':{},'elasticsearch':{}}
+    res = {'oss':{},'mongo':{},'sms':{},'elasticsearch':{},'auth':{}}
     config = ConfigParser.ConfigParser()
     try:
         config.read(filename)
@@ -50,6 +50,9 @@ def read(filename):
         res['elasticsearch']['hosts'] = config.get('elasticsearch','hosts').split(',')
         res['elasticsearch']['index'] = config.get('elasticsearch','index')
         res['elasticsearch']['type'] = config.get('elasticsearch','type')
+        # about auth
+        res['auth']['token_min'] = int(config.get('auth','token_min'))
+        res['auth']['token_max'] = int(config.get('auth','token_max'))
     except Exception,e:
         print "fail to read configuration from %s"%(filename)
         print str(e)

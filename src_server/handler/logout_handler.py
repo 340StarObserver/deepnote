@@ -3,7 +3,7 @@
 
 # Author 		: 	Lv Yang
 # Created 		: 	05 October 2016
-# Modified 		: 	05 October 2016
+# Modified 		: 	11 October 2016
 # Version 		: 	1.0
 
 """
@@ -18,4 +18,6 @@ class LogoutHandler(BaseHandler) :
         super(LogoutHandler,self).__init__(post_data,post_files,usr_session,server_conf)
 
     def perform(self):
-        pass
+        # clear this account's all sessions
+        self._usr_session.clear()
+        return {'result':True}
