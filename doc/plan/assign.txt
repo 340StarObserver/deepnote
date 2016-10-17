@@ -1,0 +1,69 @@
+### 剩余部分的安排 ###
+
+
+项目地址 : https://github.com/340StarObserver/deepnote  
+当前分支 :  
+{  
+    master分支 : 设计文档  
+    server分支 : 服务端代码  
+    client分支 : 客户端代码（待建）  
+}  
+
+
+
+先列一下目前的所有设计文档（均在master分支下） :  
+
+        01. README.md                   项目介绍  
+        02. doc/plan/iterator.md        每个迭代周期中的功能点计划  
+        03. doc/design/data.md          服务端数据库设计  
+        04. doc/design/interface.md     客户端与服务端的交互接口  
+        05. doc/design/detail.md        一些客户端与服务端的详细要求  
+        06. doc/design/UI_content.md    客户端每个界面上有哪些内容  
+
+
+
+服务端安排 :  
+
+    陈雄辉 :  
+        01. model/search_model.py              中的fuzzySearch模糊搜索函数  
+        02. handler/searchnote_handler.py      模糊搜索的处理器  
+        03. handler/oppose_handler.py          反对某篇读书笔记or取消反对的处理器  
+    
+    董传奇 :  
+        01. handler/getcollect_handler.py      按时间降序分页查看我的收藏列表的处理器  
+        02. handler/writecomment_handler.py    对某篇读书笔记发表评论or子评论的处理器  
+        03. handler/message_handler.py         按时间降序分页查看与我相关的消息的处理器  
+    
+    吴正凡 :  
+        01. handler/collect_handler.py         收藏某篇读书笔记or取消收藏的处理器  
+        02. handler/care_handler.py            关注某人or取消关注的处理器  
+        03. handler/getcare_handler.py         按时间降序分页查看我关注的人的处理器  
+    
+    // 三人尽量早点来I++搭一下开发环境，试一下当前代码  
+
+
+
+客户端安排 :  
+
+    白洋 + 董传奇 + 吴正凡 :  
+        01. 安卓编码规范  
+        02. 客户端架构方案  
+        03. 第一迭代周期的任务分配  
+    
+    赵杨 :  
+        01. 仔细阅读master分支下的相关设计文档，主要是 :  
+            doc/plan/iterator.md  
+            doc/design/UI_content.md  
+            doc/design/interface.md  
+            doc/design/detail.md中的大部分内容  
+        02. 熟悉墨刀的使用  
+        03. 与白洋，吕炀沟通，设计出第一迭代周期中所牵扯的界面 :  
+            首页界面  
+            侧边栏界面  
+            本地草稿界面  
+            写笔记界面  
+        04. 看上面白洋+董传奇+吴正凡制定的任务分配中还分给你什么任务吧⊙_⊙  
+    
+    白洋 + 赵杨 + 董传奇 + 吴正凡 :  
+        按照你们制定的任务分配完成第一迭代周期  
+

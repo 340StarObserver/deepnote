@@ -1,6 +1,6 @@
 # deepnote #
 
-> by : ChenXiongHui, LiChangMao, LvYang  
+> by : ChenXiongHui, LiChangMao, LvYang, BaiYang, ZhaoYang, Wuzhengfan, Dongchuanqi  
 
 --------------------------------------------------
 
