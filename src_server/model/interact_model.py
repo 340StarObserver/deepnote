@@ -74,11 +74,14 @@ def exist_collect(mongoconn,db_name,user_id,note_id):
     """
     judge whether somebody has collected one specific note
     return :
-        True if yes, False if not
+        if yes, return its _id
+        if no, return None
     """
     factor = {'user_id':user_id,'note_id':note_id}
     res = mongoconn[db_name]['note_collect'].find_one(factor)
-    return res != None
+    if res is not None:
+        return res['_id']
+    return None
 
 
 def exist_care(mongoconn,db_name,carer_id,cared_id):
@@ -88,8 +91,11 @@ def exist_care(mongoconn,db_name,carer_id,cared_id):
         carer_id is your id
         cared_id is another user's id
     return :
-        True if yes, False if not
+        if yes, return its _id
+        if no, return None
     """
     factor = {'carer_id':carer_id,'cared_id':cared_id}
     res = mongoconn[db_name]['care_record'].find_one(factor)
-    return res != None
+    if res is not None:
+        return res['_id']
+    return None
