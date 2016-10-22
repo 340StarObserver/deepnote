@@ -3,7 +3,7 @@
 
 # Author 		: 	Lv Yang
 # Created 		: 	05 October 2016
-# Modified 		: 	09 October 2016
+# Modified 		: 	22 October 2016
 # Version 		: 	1.0
 
 """
@@ -14,6 +14,7 @@ c. get a note's detail info from mongodb
 """
 
 from bson import ObjectId
+import json
 
 
 def fuzzySearch(esconn,index,doc_type,sentence,page_id,page_size):
@@ -32,7 +33,28 @@ def fuzzySearch(esconn,index,doc_type,sentence,page_id,page_size):
     return :
         a list like [ note_id1, note_id2, note_id3 ]
     """
-    pass
+    # prepare query body
+    body = {}
+    body['size'] = 10 * page_size
+    body['_source'] = ['nosource']
+    body['sort'] = [{'_score':{'order':'desc'}}]
+    body['query'] = {'filtered':{'query':{'bool':{'should':[]}}}}
+    body['query']['filtered']['query']['bool']['should'].append({'match':{'title':{'query':sentence,'boost':20}}})
+    body['query']['filtered']['query']['bool']['should'].append({'match':{'source_ref':{'query':sentence,'boost':1}}})
+    body['query']['filtered']['query']['bool']['should'].append({'match':{'feel':{'query':sentence,'boost':2}}})
+    body['query']['filtered']['query']['bool']['should'].append({'match':{'labels':{'query':sentence,'boost':5}}})
+    # do query
+    res = esconn.search(index=index,doc_type=doc_type,body=body)
+    res = res['hits']['hits']
+    # select notes in this page
+    note_ids = []
+    n = len(res)
+    start_i = min((page_id-1)*page_size,n)
+    over_i = min(page_id*page_size,n)
+    while start_i < over_i:
+        note_ids.append(res[start_i]['_id'])
+        start_i+=1
+    return note_ids
 
 
 def note_baseinfo(mongoconn,db_name,note_id):
