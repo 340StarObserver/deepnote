@@ -3,7 +3,7 @@
 
 # Author 		: 	Lv Yang
 # Created 		: 	15 February 2017
-# Modified 		: 	27 February 2017
+# Modified 		: 	01 March 2017
 # Version 		: 	1.0
 
 import ConfigParser
@@ -14,12 +14,16 @@ class AppConf(object):
 
 	@staticmethod
 	def init(filename):
-		res = {'pg_r' : {}, 'pg_w' : {}, 'pg_rw' : {}, 'oss' : {}, 'sms' : {}, 'auth' : {}}
+		res = {'log' : {}, 'pg_r' : {}, 'pg_w' : {}, 'pg_rw' : {}, 'oss' : {}, 'sms' : {}, 'auth' : {}}
 		config = ConfigParser.ConfigParser()
 		try:
 			reload(sys)
 			sys.setdefaultencoding('utf8')
 			config.read(filename)
+			# log
+			res['log']['path'] = config.get('log', 'path')
+			res['log']['max_mb'] = int(config.get('log', 'max_mb'))
+			res['log']['backup_num'] = int(config.get('log', 'backup_num'))
 			# pg_readonly
 			res['pg_r']['host'] = config.get('pg_r', 'host')
 			res['pg_r']['port'] = int(config.get('pg_r', 'port'))
