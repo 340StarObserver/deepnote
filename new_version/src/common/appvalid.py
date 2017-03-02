@@ -3,7 +3,7 @@
 
 # Author 		: 	Lv Yang
 # Created 		: 	01 March 2017
-# Modified 		: 	01 March 2017
+# Modified 		: 	02 March 2017
 # Version 		: 	1.0
 
 import re
@@ -20,3 +20,8 @@ class AppValid(object):
 	def validPasswd(pwd):
 		pattern = re.compile('^[0-9a-f]{32}$')
 		return pattern.match(pwd) != None
+
+	@staticmethod
+	def validNick(nick):
+		pattern = re.compile('^[0-9a-zA-Z_]{4,32}$')
+		return pattern.match(nick) != None

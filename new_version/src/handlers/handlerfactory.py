@@ -8,6 +8,7 @@
 
 from basehandler import BaseHandler
 from smshandler import SmsHandler
+from registhandler import RegistHandler
 
 
 """ factory of all handlers """
@@ -16,7 +17,8 @@ class HandlerFactory(object):
 	@staticmethod
 	def init():
 		HandlerFactory.factory = {
-			101 : SmsHandler
+			101 : SmsHandler,
+			102 : RegistHandler
 		}
 
 	@ staticmethod

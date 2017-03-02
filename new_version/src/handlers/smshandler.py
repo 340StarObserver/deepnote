@@ -9,7 +9,6 @@
 import urllib2
 import random
 import time
-import re
 
 import sys
 sys.path.append("../common")
