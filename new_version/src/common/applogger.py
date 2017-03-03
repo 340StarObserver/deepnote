@@ -23,7 +23,7 @@ class AppLogger(object):
 			)
 		)
 		logger = logging.getLogger()
-		logger.setLevel(logging.DEBUG)
+		logger.setLevel(logging.INFO)
 		logger.addHandler(handler)
 		AppLogger._logger = logger
 

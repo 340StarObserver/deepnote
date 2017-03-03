@@ -3,13 +3,15 @@
 
 # Author 		: 	Lv Yang
 # Created 		: 	01 March 2017
-# Modified 		: 	01 March 2017
+# Modified 		: 	03 March 2017
 # Version 		: 	1.0
 
 from basehandler import BaseHandler
 from smshandler import SmsHandler
 from registhandler import RegistHandler
 from loginhandler import LoginHandler
+from logouthandler import LogoutHandler
+from usrinfohandler import UsrinfoHandler
 
 
 """ factory of all handlers """
@@ -20,7 +22,9 @@ class HandlerFactory(object):
 		HandlerFactory.factory = {
 			101 : SmsHandler,
 			102 : RegistHandler,
-			103 : LoginHandler
+			103 : LoginHandler,
+			104 : LogoutHandler,
+			105 : UsrinfoHandler
 		}
 
 	@ staticmethod
