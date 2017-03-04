@@ -12,6 +12,7 @@ from registhandler import RegistHandler
 from loginhandler import LoginHandler
 from logouthandler import LogoutHandler
 from usrinfohandler import UsrinfoHandler
+from signaturehandler import SignatureHandler
 
 
 """ factory of all handlers """
@@ -24,7 +25,8 @@ class HandlerFactory(object):
 			102 : RegistHandler,
 			103 : LoginHandler,
 			104 : LogoutHandler,
-			105 : UsrinfoHandler
+			105 : UsrinfoHandler,
+			106 : SignatureHandler
 		}
 
 	@ staticmethod

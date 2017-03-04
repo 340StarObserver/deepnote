@@ -23,5 +23,8 @@ class AppValid(object):
 
 	@staticmethod
 	def validNick(nick):
-		pattern = re.compile('^[0-9a-zA-Z_]{4,32}$')
-		return pattern.match(nick) != None
+		return len(nick) <= 32
+
+	@staticmethod
+	def validSignature(signature):
+		return len(signature) <= 128
