@@ -35,10 +35,10 @@ class SignatureHandler(BaseHandler):
 
 		# conn to pg
 		pg_conn = psycopg2.connect(\
-			host = AppConf.get('pg_rw', 'host'), \
-			port = AppConf.get('pg_rw', 'port'), \
-			user = AppConf.get('pg_rw', 'usr'), \
-			password = AppConf.get('pg_rw', 'pwd'), \
+			host = AppConf.get('pg', 'host'), \
+			port = AppConf.get('pg', 'port'), \
+			user = AppConf.get('pg', 'rw_usr'), \
+			password = AppConf.get('pg', 'rw_pwd'), \
 			database = "dp_note")
 		pg_cursor = pg_conn.cursor()
 		pg_cursor.execute("update userinfo set signature=%s where usr_id=%s", \

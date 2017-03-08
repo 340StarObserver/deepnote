@@ -31,10 +31,10 @@ class UsrinfoHandler(BaseHandler):
 
 		# conn to pg
 		pg_conn = psycopg2.connect(\
-			host = AppConf.get('pg_r', 'host'), \
-			port = AppConf.get('pg_r', 'port'), \
-			user = AppConf.get('pg_r', 'usr'), \
-			password = AppConf.get('pg_r', 'pwd'), \
+			host = AppConf.get('pg', 'host'), \
+			port = AppConf.get('pg', 'port'), \
+			user = AppConf.get('pg', 'r_usr'), \
+			password = AppConf.get('pg', 'r_pwd'), \
 			database = "dp_note")
 		pg_cursor = pg_conn.cursor()
 		pg_cursor.execute("select regist_time,signature from userinfo where usr_nick=%s limit 1", (usr_nick,))
