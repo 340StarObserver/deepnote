@@ -14,7 +14,7 @@ class AppConf(object):
 
 	@staticmethod
 	def init(filename):
-		res = {'log' : {}, 'pg' : {}, 'pp' : {}, 'oss' : {}, 'sms' : {}, 'auth' : {}}
+		res = {'log' : {}, 'pg' : {}, 'oss' : {}, 'sms' : {}, 'auth' : {}}
 		config = ConfigParser.ConfigParser()
 		try:
 			reload(sys)
@@ -35,14 +35,6 @@ class AppConf(object):
 			res['pg']['w_pwd'] = config.get('pg', 'w_pwd')
 			res['pg']['rw_usr'] = config.get('pg', 'rw_usr')
 			res['pg']['rw_pwd'] = config.get('pg', 'rw_pwd')
-
-			# pipelinedb
-			res['pp']['host'] = config.get('pp', 'host')
-			res['pp']['port'] = int(config.get('pp', 'port'))
-			res['pp']['r_usr'] = config.get('pp', 'r_usr')
-			res['pp']['r_pwd'] = config.get('pp', 'r_pwd')
-			res['pp']['w_usr'] = config.get('pp', 'w_usr')
-			res['pp']['w_pwd'] = config.get('pp', 'w_pwd')
 
 			# oss
 			res['oss']['access_id'] = config.get('oss', 'access_id')
