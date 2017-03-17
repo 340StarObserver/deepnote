@@ -24,6 +24,8 @@ from carehandler import CareHandler
 from uncarehandler import UncareHandler
 from mycarehandler import MycareHandler
 
+from addnotehandler import AddnoteHandler
+
 
 """ factory of all handlers """
 class HandlerFactory(object):
@@ -42,7 +44,8 @@ class HandlerFactory(object):
 			109 : ForgetpwdHandler,
 			110 : CareHandler,
 			111 : UncareHandler,
-			112 : MycareHandler
+			112 : MycareHandler,
+			201 : AddnoteHandler
 		}
 
 	@ staticmethod

@@ -3,7 +3,7 @@
 
 # Author 		: 	Lv Yang
 # Created 		: 	01 March 2017
-# Modified 		: 	02 March 2017
+# Modified 		: 	17 March 2017
 # Version 		: 	1.0
 
 import re
@@ -28,3 +28,14 @@ class AppValid(object):
 	@staticmethod
 	def validSignature(signature):
 		return len(signature) <= 128
+
+	@staticmethod
+	def validNoteTitle(title):
+		n = len(title)
+		if n > 0 and n <= 128:
+			return True
+		return False
+
+	@staticmethod
+	def validNoteFeel(feel):
+		return len(feel) > 0
