@@ -26,6 +26,7 @@ from mycarehandler import MycareHandler
 
 from addnotehandler import AddnoteHandler
 from notelisthandler import NotelistHandler
+from updatenotehandler import UpdatenoteHandler
 
 
 """ factory of all handlers """
@@ -47,7 +48,8 @@ class HandlerFactory(object):
 			111 : UncareHandler,
 			112 : MycareHandler,
 			201 : AddnoteHandler,
-			202 : NotelistHandler
+			202 : NotelistHandler,
+			203 : UpdatenoteHandler
 		}
 
 	@ staticmethod
